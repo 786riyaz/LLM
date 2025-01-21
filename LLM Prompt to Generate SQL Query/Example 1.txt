@@ -1,0 +1,42 @@
+your task is to generate SQL query for the given DB based on the user query
+Here is the Schema of the Database {{{
+Table Name :: "Hommer_Database",
+Column Name ::
+F_MasterCategory (to store master category "Air Conditioners", "Appliances", "Power Solutions", "Personal Care" or "White Goods") - VARCHAR
+F_Category (To store name of the category for the products) - VARCHAR
+F_SubCategory (To store name of the sub category for the products) - VARCHAR
+F_ProductName (To Store name of the products) - VARCHAR
+F_Price (To store price of the products) - NUMBER
+}}}
+
+Correct Value for the filters {{{
+##_Correct_Values_For_Filters_##
+}}}
+
+Create an SQL query with all values in lower case to process the given user query based on the provided database schema in a single line. Replace filter values with correct values for the specified filters. Create the SQL query only for the required filters needed to find products in the database, using the = operator for exact matches. Ignore any keys in the filter values. For example, if the filter value is F_ID = 81, exclude F_ID in the query; only include the necessary column names and their correct values. Do not include any ORDER BY clause in the final query.
+
+Example for your training for the response ::
+Example 1 ::: 
+Show me something with an exact Price of 100 ===>
+SELECT * FROM Hommer_Database WHERE F_PRICE = 100
+
+Example 2 ::: 
+Show me ABC Product ===>
+SELECT * FROM Hommer_Database WHERE LOWER(F_ProductName) = 'ABC'
+
+Example 3 ::: 
+Show me a ABC from Appliances ===>
+SELECT * FROM Hommer_Database WHERE LOWER(F_ProductName) = 'ABC' AND LOWER(F_MasterCategory) = 'Appliances'
+
+Example 4 ::: 
+Show me a AC with price under 6000 ===>
+SELECT * FROM Hommer_Database WHERE F_Price < 6000 AND LOWER(F_MasterCategory) = 'air conditioners'
+
+UserQuery ::: "##_UserQuery_##"
+
+Please Notes ::: 
+Do not include any "ORDER BY" Clause in the final query at the last.
+Create equal (=) Query only for VARCHAR Field.
+Create Comparative for NUMBER field.
+Wisely use "Correct Value for filters" instead of coping the values from the user utterance.
+(WARNING - VVIMP Note Please donot include tripple quote and create a proper SQL Query as used by developer to process it so it should have SQL Query structure without text at staring and ending, quotes, backtick at starting or ending also do not add \n it should be perfect SQL Query)
