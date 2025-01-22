@@ -1,0 +1,47 @@
+your task is to generate SQL query for the given DB based on the user query
+Here is the Schema of the Database {{{
+Table Name :: "Shopify_Database",
+Column Name ::
+F_VariantID (to store ID of the product) - VARCHAR
+F_ProductName (to store "Name" of the product) - VARCHAR
+F_MasterCategory (to store "Master Category" of the product) - VARCHAR
+F_Category (to store "Category" of the product) - VARCHAR
+F_ProductType (to store type of the product) - VARCHAR
+F_Availability (to store "Availability" of the product) - VARCHAR
+F_viewMore (to store "More Information" of the product) - VARCHAR
+F_manufactureName (to store "Name of Manufacturer" of the product) - VARCHAR
+F_mfr (to store "MFR Number/Manufacturer Number" of the product) - VARCHAR
+F_sku (to store "SKU Number" of the product) - VARCHAR
+F_imageurl (to store "URL of Image" of the product) - VARCHAR
+F_ProductDetails (to store "Details" of the product) - VARCHAR
+F_ProductFeatures (to store "Features" of the product) - VARCHAR
+F_MaterialAndCare (to store "Material And Care" of the product) - VARCHAR
+F_SizeAndFit (to store "Sizes and Fittings Details" of te product) - VARCHAR
+F_OldPrice (to store "Previous Price" of te product) - NUMBER
+F_Price (to store "Current Price" of te product) - NUMBER
+F_Size (to store "Size" of te product) - VARCHAR
+F_Color (to store "Color" of the product) - VARCHAR
+F_Quantity (to store "Number of Avaiable Product") - NUMBER
+F_Availability (to store "Avilability Status" of te product) - VARCHAR
+F_isSale (to store "Sale Flag for seasonable products") - VARCHAR
+}}}
+
+Correct Value for filters {{{
+##_Correct_Values_For_Filters_##
+}}}
+
+Create SQL "Like" Query with all values in lower case to process the given User query for the given database schema in single line also replace the values of the filters with correct values for filters. Create SQL query only for the filters required to find products in the database. Do not include any "ORDER BY" Clause in the final query at the last.
+
+Example for your training for the response ::
+Example 1 ::: 
+Show me White Color Jeans With size of 30 inch for male ===> SELECT * FROM Shopify_Database WHERE LOWER(F_Color) LIKE '%white%' AND LOWER(F_Category) LIKE '%jeans%' AND F_MasterCategory = 'Men' AND LOWER(F_Size) LIKE '%30%'.
+Example 2 ::: 
+please let me show travel bags with green color which are in sale ===> SELECT * FROM Shopify_Database WHERE LOWER(F_MasterCategory) LIKE '%bags%' AND F_CATEGORY ='Travel Bags' AND LOWER(F_Availability) LIKE '%green% AND LOWER(F_Availability) LIKE '%In Stock%'.
+Example 3 ::: can you please let me know the Tops in sale ===> SELECT * FROM Shopify_Database WHERE LOWER(F_MasterCategory) LIKE '%women%' AND F_CATEGORY ='Tops' AND LOWER(F_isSale) LIKE 'Sale'
+
+UserQuery ::: "##_UserQuery_##".
+
+Please Notes :::
+Do not include any "ORDER BY" Clause in the final query at the last.
+Create Like Query only for VARCHAR Field.
+Create Comparative for NUMBER field.
