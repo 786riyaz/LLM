@@ -1,0 +1,64 @@
+### Step 1) Database Understanding :: 
+Your task is to generate 2 or more than 2 different SQL query for the given DB based on the user query, and provide response in JSON format as given in the last.
+Here is the Schema of the Database {{{
+Table Name :: "Hommer_Database",
+
+Columns' Name and Details ::
+F_MasterCategory (to store master category "Air Conditioners", "Appliances", "Power Solutions", "Personal Care" or "White Goods") - VARCHAR
+F_Category (To store name of the category for the products) - VARCHAR
+F_SubCategory (To store name of the sub category for the products) - VARCHAR
+F_ProductName (To Store name of the products) - VARCHAR
+F_Price (To store price of the products) - NUMBER
+}}}
+
+### Step 2) Examples Understing for Proper Array of Queries Generation ::
+- Create SQL "Select" Query with all values to process the given User query for the given database schema in single line also replace the values of the filters with correct values for filters. 
+- Create SQL query only for the filters required to find products in the database and mentioned in the Column Name.
+- Do not include any "ORDER BY" Clause in the final query at the last.
+- In examples, you can observe that we have used the Correct Values for filters given in step 3 for query generation without changing any spellings or any character.
+
+Example for your training for the response :: 
+### Examples Starts ###
+## Example 1 Starts (When user asks for difference of different categories or sub categories)
+Input :: What is the difference between Hair Clippers and Hair Dryers
+Correct Value for filters --> F_Category = Hair Clippers, F_Category = Hair Dryers
+
+Output :: ["Select * FROM Hommer_Database WHERE LOWER(F_Category) = 'hair clippers'",  "Select * FROM Hommer_Database WHERE LOWER(F_Category) = 'hair dryers'"]
+## Example 1 Ends
+
+## Example 2 Starts (When user asks for difference of different products of different category or sub category)
+Input :: What is the difference between a Electronic Body Fat Scale of Scales and Hair Clipper with T-Blade of Hair Clippers?
+Correct Value for filters --> F_ProductName = Electronic Body Fat Scale, F_ProductName = Hair Clipper with T-Blade, F_Category = Scale, F_Category = Hair Clippers
+Output :: ["Select * FROM Hommer_Database WHERE LOWER(F_ProductName) = 'electronic body fat scale' AND LOWER(F_Category) = 'scale'", "Select * FROM Hommer_Database WHERE LOWER(F_ProductName) = 'hair clipper with t-blade' AND LOWER(F_Category) = 'hair clippers'"]
+## Example 2 Ends
+
+## Example 3 Starts (When user asks for difference of different products of same category or sub category)
+Input :: What is the difference between a 1800 Watt Hair Dryer of Hair Dryers and 2400 Watt Hair Dryer door of Hair Dryers?
+Correct Value for filters --> F_ProductName :: 1800 Watt Hair Dryer, F_ProductName :: 2400 Watt Hair Dryer, F_Category :: Hair Dryers
+Output :: ["Select * FROM Hommer_Database WHERE LOWER(F_ProductName) = '1800 watt hair dryer' AND LOWER(F_Category) = 'hair dryers'", "Select * FROM Hommer_Database WHERE LOWER(F_ProductName) = '2400 watt hair dryer' AND LOWER(F_Category) = 'hair dryers'"]
+## Example 3 Ends
+
+## Example 4 Starts (When user asks for difference of different products)
+Input :: What is the difference between a 1800 Watt Hair Dryer and a 2400 Watt Hair Dryer?
+Correct Value for filters --> F_ProductName :: 1800 Watt Hair Dryer, F_ProductName :: 2400 Watt Hair Dryer
+Output :: ["Select * FROM Hommer_Database WHERE LOWER(F_ProductName) = '1800 watt hair dryer'", "Select * FROM Hommer_Database WHERE LOWER(F_ProductName) = '2400 watt hair dryer'"]
+## Example 4 Ends
+### Examples Ends ###
+
+### Step 3) Understanding the correct values for query Generation :: 
+User can use irregular values of product name, Master Category name, Category name, Sub Category name etc..
+Here are Correct Value for filters {{{
+##_Correct_Values_For_Filters_##
+}}}
+
+You must have to you these correct values for query generations instead of values written by the user, The correct values for filters are most accurate according to the Database values.
+Correct values for filters are very important to fetch the data from database, so do not change spellings or character of correct values.
+
+### Step 4) Formatting Notes 
+- If Correct Value for filters contains any astrick in product name and keep that astrick in final query with product name
+- Do not include any "ORDER BY" Clause in the final query at the last. 
+- Do not Create Queries which do not have any Where clause like "Select * FROM Hommer_Database"
+
+** WARNING :: VVIMP Note Please do not include tripple quote and create a proper SQL Query as used by developer to process it so it should have SQL Query structure without text at starting and ending of JSON, quotes, backtick at starting or ending also do not add '\n' it should be perfect SQL Query, Do not change product name keep it as it is mentioned in Correct value for filters with lower case.
+
+User Query for which you have create array of SQL Queries ::: ##_UserQuery_##
